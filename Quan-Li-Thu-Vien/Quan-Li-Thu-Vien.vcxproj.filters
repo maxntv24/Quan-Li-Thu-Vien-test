@@ -32,5 +32,14 @@
     <ClInclude Include="All_function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="load_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HamHoTro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DoHoa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
