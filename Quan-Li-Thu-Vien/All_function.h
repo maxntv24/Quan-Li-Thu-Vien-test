@@ -105,8 +105,8 @@ ostream& operator<<(ostream& out, DG a) {
 	yDG++;
 	return out;
 }
-void xuatDG_theoMa(treeDG t)
-{
+void xuatDG_theoMa(treeDG t)  // ki thuat left-node-right  sẽ đi sâu xuống về bên trái nhất rồi xuất rồi sang phải
+{							  // nên sẽ xuất ra danh sách theo key tăng dần  (key là mã độc giả)
 	if (t != NULL) {
 		xuatDG_theoMa(t->pleft);
 		cout << t->data;
@@ -123,9 +123,6 @@ void xuatDG_theoTen(treeDG t)
 	cout << n;
 	for (int i = 0; i < n; i++) {
 		cout << *a[i];
-	}
-	for (int i = 0; i < n; i++) {
-		delete a[i];
 	}
 }
 nodeDG* khoitaoDG(DocGia x)

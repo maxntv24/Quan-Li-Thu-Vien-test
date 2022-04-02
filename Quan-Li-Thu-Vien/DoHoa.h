@@ -2,7 +2,7 @@
 #include <iostream>
 #include "my_lib.h"
 using namespace std;
-void BangDS_DocGia() {
+void BangDS_DocGia() { // bang danh sach doc gia
 	for (int i = 5; i <= 150; i++) {  // ve canh ngang
 		gotoXY(i, 7);
 		cout << char(220);

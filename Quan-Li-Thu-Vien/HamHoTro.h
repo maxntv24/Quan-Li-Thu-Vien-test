@@ -1,8 +1,7 @@
-#pragma once
+﻿#pragma once
 #include "ctdl.h"
 #include "All_function.h"
 using namespace std;
-int i = 0;
 //void themPhanTuVaoCayTam(treeDG& tam, DocGia a) 
 //{
 //	if (tam == NULL) {
@@ -52,16 +51,14 @@ void taoMaDocGia() {
 void caySangMang(treeDG t, DocGia *a[],int &n)
 {
 	if (t != NULL) {
-		a[i] = new DocGia;
-		*a[i] = t->data;
-		i++;
-		n = i;
+		a[n] = &t->data;
+		n++;
 		caySangMang(t->pleft,a,n);
 		caySangMang(t->pright, a,n);
 	}
 }
-void swapDG(DocGia &a,DocGia &b) {
-	DocGia tam=a;
+void swapDG(DocGia *&a,DocGia *&b) {
+	DocGia *tam=a;
 	a = b;
 	b = tam;
 }
@@ -70,11 +67,11 @@ void sapXepMangDG(DocGia *a[], int n)
 	for (int i = 0; i < n-1; i++) 
 	{
 		for (int j = i+1; j < n; j++) {
-			if (a[i]->ten > a[j]->ten) {
-				swapDG(*a[i], *a[j]);
+			if (a[i]->ten > a[j]->ten) { // neu ten khac nhau
+				swapDG(a[i], a[j]);
 			}
-			else if (a[i]->ten == a[j]->ten && a[i]->ho > a[i]->ho) {
-				swapDG(*a[i], *a[j]);
+			else if (a[i]->ten == a[j]->ten && a[i]->ho > a[i]->ho) { // nếu tên bằng nhau và họ khác nhau
+				swapDG(a[i], a[j]);
 			}
 		}
 	}
