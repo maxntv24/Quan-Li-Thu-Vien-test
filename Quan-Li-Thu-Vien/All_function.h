@@ -6,6 +6,7 @@
 #include "my_lib.h"
 #include "ctdl.h"
 #include "HamHoTro.h"
+#include "DoHoa.h"
 #define LEN 72
 #define XUONG 80
 #define TRAI 75
@@ -66,26 +67,76 @@ int MenuDong(char td[][50], int sum,int dong,int cot) {
 		}  // end switch
 	}
 }
+int MenuDong2(char td[][50], int sum, int dong, int cot) {
+	ShowCur(0);
+	int chon = 0;
+	int i;
+	int tam = 0;
+	HighLight();
+	gotoXY(cot, dong);
+	cout << td[0];
+	Normal();
+	gotoXY(cot + 5, dong);
+	cout << td[1];
+	char kytu;
+	while (1) {
+		kytu = _getch();
+		if (kytu == 0) kytu = _getch();
+		switch (kytu) {
+		case TRAI:if (chon + 1 > 1)
+		{
+			Normal();
+			gotoXY(cot + 5, dong);
+			cout << td[1];
+			chon--;
+			HighLight();
+			gotoXY(cot, dong);
+			cout << td[0];
+
+		}
+				 break;
+		case PHAI:if (chon + 1 < sum)
+		{
+			Normal();
+			gotoXY(cot, dong);
+			cout << td[0];
+			chon++;
+			HighLight();
+			gotoXY(cot + 5, dong);
+			cout << td[1];
+
+		}
+				 break;
+		case 13: return chon + 1;
+		}  // end switch
+	}
+}
 // ============ Xu li doc gia===============
 istream& operator>>(istream& in, DG& a)
 {
-	int y = 3;
-	gotoXY(80, y++);
-	cout << "Nhap ma the: ";
-	in >> a.maThe;
-	in.ignore();
-	gotoXY(80, y++);
-	cout << "Nhap ho: ";
-	getline(in, a.ho);
-	gotoXY(80, y++);
-	cout << "Nhap ten: ";
-	getline(in, a.ten);
-	gotoXY(80, y++);
-	cout << "Nhap phai: ";
-	getline(in, a.phai);
-	gotoXY(80, y++);
-	cout << "Nhap trang thai: ";
-	in >> a.trangThai;
+	char phai[2][50] = {
+		"Nam",
+		"Nu",
+	};
+	char trangThai[2][50] ={
+		"0",
+		"1",
+	};
+	BangNhapDG();
+	ShowCur(1);
+	//====ho===
+	a.ho = nhap(177,9);
+	a.ten= nhap(177,13);
+	int chon = MenuDong2(phai, 2,17,177);
+	if (chon == 1) {
+		a.phai = "Nam";
+	}
+	else a.phai = "Nu";
+	chon = MenuDong2(trangThai, 2, 20, 180);
+	if (chon == 1) {
+		a.trangThai=0;
+	}
+	else a.trangThai=1;
 	return in;
 }
 ostream& operator<<(ostream& out, DG a) {
@@ -112,6 +163,12 @@ void xuatDG_theoMa(treeDG t)  // ki thuat left-node-right  sẽ đi sâu xuống
 		cout << t->data;
 		xuatDG_theoMa(t->pright);
 	}
+	if ((yDG - 10 + 1) % 30 == 0) {
+		char c = _getch();
+		yDG = 10;
+		system("cls");
+		BangDS_DocGia();
+	}
 }
 void xuatDG_theoTen(treeDG t)
 {
@@ -119,9 +176,13 @@ void xuatDG_theoTen(treeDG t)
 	DocGia* a[10000];
 	caySangMang(t,a,n);
 	sapXepMangDG(a, n);
-	gotoXY(2, 3);
-	cout << n;
 	for (int i = 0; i < n; i++) {
+		if ((i + 1) % 30 == 0) {
+			char c = _getch();
+			yDG = 10;
+			system("cls");
+			BangDS_DocGia();
+		}
 		cout << *a[i];
 	}
 }

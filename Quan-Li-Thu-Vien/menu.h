@@ -44,6 +44,7 @@ void menuDocGia(treeDG &t) {
 			break;
 		}
 		case 2: {
+			yDG = 10;
 			SetBGColor(0);
 			system("cls");
 			BangDS_DocGia();

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "ctdl.h"
 #include "All_function.h"
+#include "string"
 using namespace std;
 //void themPhanTuVaoCayTam(treeDG& tam, DocGia a) 
 //{
@@ -75,5 +76,34 @@ void sapXepMangDG(DocGia *a[], int n)
 			}
 		}
 	}
+}
+char chuyenChuThuongThanhHoa(char c) {
+	if (c >= 'a' && c <= 'z') {
+		c = c - 32;
+	}
+	return c;
+}
+string nhap(int x,int y) {
+	gotoXY(x, y);
+	string s;
+	char tam = ' ';
+	while (true) {
+		char c = _getch();
+		if (c == ' ' && tam == ' ') continue;
+		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ') {
+			gotoXY(x++, y);
+			cout << c;
+			s = s + chuyenChuThuongThanhHoa(c);
+		}
+		if (c == 13) break;
+		if (c == 8) {
+			gotoXY(--x, y);
+			cout << ' ';
+			gotoXY(x, y);
+			s.pop_back();
+		}
+		tam = c;
+	}
+	return s;
 }
 
