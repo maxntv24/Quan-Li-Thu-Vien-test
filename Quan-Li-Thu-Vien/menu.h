@@ -31,15 +31,29 @@ char menuDS[][50] =
 };
 void menuDocGia(treeDG &t) {
 	ShowCur(0);
+	bool flagDG = true;
 	int chon, sum = 4;
-	while (1) {
+	while (flagDG) {
 		chon = MenuDong(menuDG, sum, 3, 40);
 		switch (chon) {
 		case 1: {
 			textcolor(3);
 			DG a;
+			ifstream inMaDG("MaDG.txt");
+			ofstream inTam("tam.txt");
+			inMaDG >> a.maThe;
 			cin >> a;
 			themDocGia(t, a);
+			int tam;
+			/*while (inMaDG >> tam) {
+				if (tam != a.maThe) {
+					inTam << tam << " ";
+				}
+			}*/
+			inMaDG.close();
+			inTam.close();
+			/*remove("MaDG.txt");
+			rename("tam.txt", "MaDG.txt");*/
 			system("cls");
 			break;
 		}
@@ -86,6 +100,57 @@ void menuDocGia(treeDG &t) {
 		}
 	}
 }
+void menuDocGia2(treeDG& t) {
+	ShowCur(0);
+	bool flagDG = true;
+	int chon, sum = 4;
+	while (flagDG) {
+		//chon = MenuDong(menuDG, sum, 3, 40);
+		yDG = 10;
+		SetBGColor(0);
+		system("cls");
+		BangDS_DocGia();
+		gotoXY(0, 0);
+		cout << "Nhap lua chon: ";
+		int c;
+		cin >> c;
+		if (c == 1) {
+			xuatDG_theoMa(t);
+		}
+		else
+		{
+			xuatDG_theoTen(t);
+		}
+		char k = _getch();
+		switch (k) {
+		case 1: {
+			textcolor(3);
+			DG a;
+			ifstream inMaDG("MaDG.txt");
+			ofstream inTam("tam.txt");
+			inMaDG >> a.maThe;
+			cin >> a;
+			themDocGia(t, a);
+			int tam;
+			/*while (inMaDG >> tam) {
+				if (tam != a.maThe) {
+					inTam << tam << " ";
+				}
+			}*/
+			inMaDG.close();
+			inTam.close();
+			/*remove("MaDG.txt");
+			rename("tam.txt", "MaDG.txt");*/
+			system("cls");
+			break;
+		}
+		case 27: {
+			flagDG = false;
+			break;
+		}
+		}
+	}
+}
 void menuDauSach(listDauSach& ds) {
 	ShowCur(0);
 	int chon, sum = 4;
@@ -125,10 +190,11 @@ void menuChinh() {
 	ShowCur(0);
 	int chon, sum = 9;
 	while (1) {
+		system("cls");
 		chon = MenuDong(menu, sum,3,3);
 		switch (chon) {
 		case 1: {
-			menuDocGia(t);
+			menuDocGia2(t);
 			break;
 		}
 		case 2: {
