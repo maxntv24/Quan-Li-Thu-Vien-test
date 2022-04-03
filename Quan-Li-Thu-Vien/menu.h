@@ -102,7 +102,7 @@ void menuDocGia(treeDG &t) {
 }
 void menuDocGia2(treeDG& t) {
 	ShowCur(0);
-	bool flagDG = true;
+	bool flagDG = true; // bien dung de ngat vong while va quay ve menu chinh
 	int chon, sum = 4;
 	while (flagDG) {
 		//chon = MenuDong(menuDG, sum, 3, 40);
