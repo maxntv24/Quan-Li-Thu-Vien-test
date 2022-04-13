@@ -27,6 +27,8 @@ void load_file_Doc_Gia(treeDG& t)
 {
 	ifstream in("DocGia.txt");
 	DocGia data;
+	int tam;
+	in.ignore();
 	while (!in.eof()) {
 		in >> data.maThe;
 		in.ignore();
@@ -38,4 +40,36 @@ void load_file_Doc_Gia(treeDG& t)
 		themDocGia(t, data);
 	}
 	in.close();
+}
+void ghi_file_Doc_Gia(DocGia a) {
+	ofstream out("DocGia.txt", ios_base::app);
+	out << endl;
+	out << a.maThe << "," << a.ho << "," << a.ten << "," << a.phai << "," << a.trangThai;
+	out.close();
+}
+void ghi_file_tat_ca_doc_gia(treeDG t) {
+	nodeDG* p;
+	ofstream out("DocGia.txt", ios_base::out);
+	while (t) {
+		if (t->pleft == NULL) {
+			out << endl << t->data.maThe << "," << t->data.ho << "," << t->data.ten << "," << t->data.phai << "," << t->data.trangThai;
+			t = t->pright;
+		}
+		else {
+			p = t->pleft;
+			while (p->pright && p->pright != t) {
+				p = p->pright;
+			}
+			if (p->pright == NULL) {
+				p->pright = t;
+				out << endl << t->data.maThe << "," << t->data.ho << "," << t->data.ten << "," << t->data.phai << "," << t->data.trangThai;
+				t = t->pleft;
+			}
+			else {
+				p->pright = NULL;
+				t = t->pright;
+			}
+		}
+	}
+	out.close();
 }

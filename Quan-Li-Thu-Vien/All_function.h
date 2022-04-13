@@ -12,6 +12,7 @@
 #define TRAI 75
 #define PHAI 77
 using namespace std;
+void ghi_file_Doc_Gia(DocGia a);
 int yDG=10;
 // =================menu==================
 void Normal() {
@@ -125,6 +126,8 @@ istream& operator>>(istream& in, DG& a)
 	BangNhapDG();
 	ShowCur(1);
 	//====ho===
+	gotoXY(177, 6);
+	cout << a.maThe;
 	a.ho = nhap(177,9);
 	a.ten= nhap(177,13);
 	int chon = MenuDong2(phai, 2,17,177);
@@ -137,6 +140,7 @@ istream& operator>>(istream& in, DG& a)
 		a.trangThai=0;
 	}
 	else a.trangThai=1;
+	ghi_file_Doc_Gia(a);
 	return in;
 }
 ostream& operator<<(ostream& out, DG a) {
@@ -227,11 +231,12 @@ void nodeTheMang(treeDG& t, nodeDG*& k)
 		nodeTheMang(t, k->pright);
 	}
 }
-void xoaDocGia(treeDG& t, int x)
+void xoaDocGia(treeDG& t, int x, int &check)
 {
 	if (t != NULL)
 	{
 		if (t->data.maThe == x) {
+			check = 1;
 			if (t->pleft == NULL && t->pright == NULL)
 			{
 				nodeDG* tam = t;
@@ -256,10 +261,10 @@ void xoaDocGia(treeDG& t, int x)
 			}
 		}
 		else if (x > t->data.maThe) {
-			xoaDocGia(t->pright, x);
+			xoaDocGia(t->pright, x, check);
 		}
 		else {
-			xoaDocGia(t->pleft, x);
+			xoaDocGia(t->pleft, x, check);
 		}
 	}
 }
@@ -281,6 +286,7 @@ void hieuchinhDG(treeDG &t, int x)
 		}
 	}
 }
+
 //============Xu li dau sach==============
 ostream& operator<<(ostream& out, dauSach a) {
 	cout << a.ISBN << setw(30) << a.tenSach << setw(10) << a.soTrang << setw(20) << a.tacGia << setw(10) << a.namXuatBan << setw(30) << a.theLoai << endl;

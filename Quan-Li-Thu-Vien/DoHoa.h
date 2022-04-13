@@ -39,7 +39,9 @@ void BangDS_DocGia() { // bang danh sach doc gia
 	cout << "TRANG THAI";
 }
 void BangNhapDG() {
-	for (int i = 160; i <= 200; i++) {
+	for (int i = 160; i <= 200; i++) {// ve canh ngang
+		gotoXY(i, 5);
+		cout << char(220);
 		gotoXY(i, 7);
 		cout << char(220);
 		gotoXY(i, 11);
@@ -51,7 +53,7 @@ void BangNhapDG() {
 		gotoXY(i, 21);
 		cout << char(220);
 	}
-	for (int i = 8; i <= 21; i++) {
+	for (int i = 6; i <= 21; i++) {// ve canh doc
 		gotoXY(160, i);
 		cout << char(219);
 		gotoXY(175, i);
@@ -59,6 +61,8 @@ void BangNhapDG() {
 		gotoXY(200, i);
 		cout << char(219);
 	}
+	gotoXY(163, 6);
+	cout << "MA THE";
 	gotoXY(165, 9);
 	cout << "HO";
 	gotoXY(165, 13);
@@ -67,4 +71,72 @@ void BangNhapDG() {
 	cout << "PHAI";
 	gotoXY(163, 20);
 	cout << "TRANG THAI";
+}
+void BangXoa() {
+	for (int i = 160; i <= 200; i++) {  // ve canh ngang
+		gotoXY(i, 7);
+		cout << char(220);
+		gotoXY(i, 9);
+		cout << char(220);
+		gotoXY(i, 11);
+		cout << char(220);
+	}
+	for (int i = 8; i <= 11; i++) { // ve canh doc
+		gotoXY(160, i);
+		cout << char(219);
+		gotoXY(180, i);
+		cout << char(219);
+		gotoXY(200, i);
+		cout << char(219);
+	}
+	gotoXY(162,8);
+	cout << "NHAP MA DOC GIA";
+	gotoXY(162, 10);
+	cout << "THONG BAO";
+}
+void BangHieuChinh() {
+	for (int i = 160; i <= 200; i++) {  // ve canh ngang
+		gotoXY(i, 7);
+		cout << char(220);
+		gotoXY(i, 9);
+		cout << char(220);
+		gotoXY(i, 11);
+		cout << char(220);
+	}
+	for (int i = 8; i <= 11; i++) { // ve canh doc
+		gotoXY(160, i);
+		cout << char(219);
+		gotoXY(180, i);
+		cout << char(219);
+		gotoXY(200, i);
+		cout << char(219);
+	}
+	gotoXY(162, 8);
+	cout << "NHAP MA DOC GIA";
+	gotoXY(162, 10);
+	cout << "THONG BAO";
+}
+void xoaBangHieuChinh() {
+	for (int i = 160; i <= 200; i++) {  // ve canh ngang
+		gotoXY(i, 7);
+		cout << " ";
+		gotoXY(i, 9);
+		cout << " ";
+		gotoXY(i, 11);
+		cout << " ";
+	}
+	for (int i = 8; i <= 11; i++) { // ve canh doc
+		gotoXY(160, i);
+		cout << " ";
+		gotoXY(180, i);
+		cout << " ";
+		gotoXY(200, i);
+		cout << " ";
+	}
+	gotoXY(162, 8);
+	cout << "                   ";
+	gotoXY(162, 10);
+	cout << "                   ";
+	gotoXY(182, 8);
+	cout << "                   ";
 }

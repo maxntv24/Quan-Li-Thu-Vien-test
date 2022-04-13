@@ -92,8 +92,14 @@ string nhap(int x,int y) {
 		if (c == ' ' && tam == ' ') continue;
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ') {
 			gotoXY(x++, y);
-			cout << c;
-			s = s + chuyenChuThuongThanhHoa(c);
+			if (tam == ' '){
+				cout << chuyenChuThuongThanhHoa(c);
+				s = s + chuyenChuThuongThanhHoa(c);
+			}
+			else {
+				cout << c;
+				s = s + c;
+			}
 		}
 		if (c == 13) break;
 		if (c == 8) {
@@ -103,6 +109,9 @@ string nhap(int x,int y) {
 			s.pop_back();
 		}
 		tam = c;
+	}
+	while (s.back() == ' ') {
+		s.pop_back();
 	}
 	return s;
 }

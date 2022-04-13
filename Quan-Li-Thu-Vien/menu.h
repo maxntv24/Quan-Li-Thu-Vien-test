@@ -82,7 +82,7 @@ void menuDocGia(treeDG &t) {
 			cout << "Nhap ma the can xoa: ";
 			int n;
 			cin >> n;
-			xoaDocGia(t, n);
+			//xoaDocGia(t, n);
 			cout << "Da xoa!!!";
 			system("pause");
 		}
@@ -123,7 +123,7 @@ void menuDocGia2(treeDG& t) {
 		}
 		char k = _getch();
 		switch (k) {
-		case 1: {
+		case 49: {
 			textcolor(3);
 			DG a;
 			ifstream inMaDG("MaDG.txt");
@@ -132,16 +132,65 @@ void menuDocGia2(treeDG& t) {
 			cin >> a;
 			themDocGia(t, a);
 			int tam;
-			/*while (inMaDG >> tam) {
+			while (inMaDG >> tam) {
 				if (tam != a.maThe) {
 					inTam << tam << " ";
 				}
-			}*/
+			}
 			inMaDG.close();
 			inTam.close();
-			/*remove("MaDG.txt");
-			rename("tam.txt", "MaDG.txt");*/
+			remove("MaDG.txt");
+			rename("tam.txt", "MaDG.txt");
 			system("cls");
+			break;
+		}
+		case 50: {
+			ShowCur(1);
+			textcolor(3);
+			BangXoa();
+			int x;
+			gotoXY(182, 8);
+			cin >> x;
+			gotoXY(182, 10);
+			cout << "CHAC CHAN (y/n)";
+			char c;
+			do {
+				c = _getch();
+				if (c == 'y') {
+					int check = 0;
+					xoaDocGia(t, x,check);
+					ghi_file_tat_ca_doc_gia(t);
+					gotoXY(182, 10);
+					if (check == 1) {
+						cout << "DA XOA!!!";
+						ofstream out("MaDG.txt", ios_base::app);
+						out << x<<" ";
+						out.close();
+					}
+					else cout << "MA THE KHONG TON TAI";
+				}
+				else if (c == 'n') {
+					gotoXY(182, 10);
+					cout << "DA HUY";
+					break;
+				}
+			} while (c != 'y');
+			c = _getch();
+			break;
+		}
+		case 51: {
+			ShowCur(1);
+			textcolor(3);
+			BangHieuChinh();
+			int n;
+			gotoXY(182, 8);
+			cin >> n;
+			xoaBangHieuChinh();
+			hieuchinhDG(t, n);
+			BangHieuChinh();
+			gotoXY(182, 10);
+			cout << "Da hieu chinh!!!";
+			char c = _getch();
 			break;
 		}
 		case 27: {
@@ -185,8 +234,12 @@ void menuChinh() {
 	treeDG t = NULL;
 	listDauSach ds;
 	ds.sl = 0;
+	cout << "a";
 	load_file_Dau_Sach(ds);
+	cout << "a";
 	load_file_Doc_Gia(t);
+	cout << "a";
+
 	ShowCur(0);
 	int chon, sum = 9;
 	while (1) {
