@@ -12,7 +12,7 @@
 #define TRAI 75
 #define PHAI 77
 using namespace std;
-void ghi_file_Doc_Gia(DocGia a);
+void ghi_file_tat_ca_doc_gia(treeDG t);
 int yDG=10;
 // =================menu==================
 void Normal() {
@@ -140,7 +140,6 @@ istream& operator>>(istream& in, DG& a)
 		a.trangThai=0;
 	}
 	else a.trangThai=1;
-	ghi_file_Doc_Gia(a);
 	return in;
 }
 ostream& operator<<(ostream& out, DG a) {
@@ -275,6 +274,7 @@ void hieuchinhDG(treeDG &t, int x)
 		if (t->data.maThe == x)
 		{
 			cin>> t->data;
+			ghi_file_tat_ca_doc_gia(t);
 		}
 		else if (t->data.maThe < x)
 		{
@@ -332,5 +332,33 @@ void nhapDS(listDauSach& ds)
 void xuatDauSach(listDauSach ds) {
 	for (int i = 0; i < ds.sl; i++) {
 		cout << *ds.ds_DauSach[i];
+	}
+}
+//--- ham tim kiem dau sach theo ISBN neu co tra ve vi tri khong thi tra ve <-1>
+int TIM_DS_THEO_MA(listDauSach l, string ma)
+{
+	for (int i = 0; i < l.sl; i++)
+	{
+		if (l.ds_DauSach[i]->ISBN == ma)
+			return i;
+	}
+	return -1;
+}
+
+//=====Quan li danh muc sach===============
+nodeDMS* khoitaoDMS(DMS x) {
+	nodeDMS* p = new nodeDMS;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+void themSach(listDanhMucSach &l, nodeDanhMucSach *p) {
+	if (l.phead == NULL) {
+		l.phead = l.ptail = p;
+	}
+	else
+	{
+		l.ptail->pnext = p;
+		l.ptail = p;
 	}
 }

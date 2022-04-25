@@ -141,6 +141,7 @@ void menuDocGia2(treeDG& t) {
 			inTam.close();
 			remove("MaDG.txt");
 			rename("tam.txt", "MaDG.txt");
+			ghi_file_tat_ca_doc_gia(t);
 			system("cls");
 			break;
 		}
@@ -187,9 +188,14 @@ void menuDocGia2(treeDG& t) {
 			cin >> n;
 			xoaBangHieuChinh();
 			hieuchinhDG(t, n);
+			XoaBangNhapDG();
 			BangHieuChinh();
+			textcolor(6);
+			gotoXY(182, 8);
+			cout << n;
 			gotoXY(182, 10);
 			cout << "Da hieu chinh!!!";
+			ghi_file_tat_ca_doc_gia(t);
 			char c = _getch();
 			break;
 		}

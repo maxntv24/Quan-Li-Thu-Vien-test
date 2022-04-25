@@ -72,6 +72,15 @@ void BangNhapDG() {
 	gotoXY(163, 20);
 	cout << "TRANG THAI";
 }
+void XoaBangNhapDG() {
+	textcolor(0);
+	for (int x = 160; x <= 200; x++) {// ve canh ngang
+		for (int y = 5; y <= 21; y++) {
+			gotoXY(x, y);
+			cout << " ";
+		}
+	}
+}
 void BangXoa() {
 	for (int i = 160; i <= 200; i++) {  // ve canh ngang
 		gotoXY(i, 7);
@@ -95,6 +104,7 @@ void BangXoa() {
 	cout << "THONG BAO";
 }
 void BangHieuChinh() {
+	textcolor(3);
 	for (int i = 160; i <= 200; i++) {  // ve canh ngang
 		gotoXY(i, 7);
 		cout << char(220);
@@ -140,3 +150,4 @@ void xoaBangHieuChinh() {
 	gotoXY(182, 8);
 	cout << "                   ";
 }
+

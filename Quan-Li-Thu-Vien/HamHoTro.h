@@ -68,12 +68,15 @@ void sapXepMangDG(DocGia *a[], int n)
 	for (int i = 0; i < n-1; i++) 
 	{
 		for (int j = i+1; j < n; j++) {
-			if (a[i]->ten > a[j]->ten) { // neu ten khac nhau
+			string tami = a[i]->ten + a[i]->ho;
+			string tamj = a[j]->ten + a[j]->ho;
+
+			if (tami > tamj) { // neu ten khac nhau
 				swapDG(a[i], a[j]);
 			}
-			else if (a[i]->ten == a[j]->ten && a[i]->ho > a[i]->ho) { // nếu tên bằng nhau và họ khác nhau
-				swapDG(a[i], a[j]);
-			}
+			//else if (a[i]->ten == a[j]->ten && a[i]->ho > a[i]->ho) { // nếu tên bằng nhau và họ khác nhau
+			//	swapDG(a[i], a[j]);
+			//}
 		}
 	}
 }

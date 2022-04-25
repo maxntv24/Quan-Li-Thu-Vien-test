@@ -30,6 +30,7 @@ struct dauSach {
 	string tacGia;
 	int namXuatBan;
 	string theLoai;
+	int soLuongMuon;
 	listDanhMucSach dms;
 };
 struct listDauSach {
